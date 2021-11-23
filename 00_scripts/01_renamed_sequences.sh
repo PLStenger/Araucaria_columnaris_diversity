@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
 # pathways in cluster:
-DATADIRECTORY_16S=/scratch_vol1/fungi/Saribus_jeanneneyi/01_raw_data/16S
-OUTPUT_16S=/scratch_vol1/fungi/Saribus_jeanneneyi/02_pooled_data/16S
+DATADIRECTORY_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/01_raw_data/16S
+OUTPUT_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/02_pooled_data/16S
 
-DATADIRECTORY_ITS=/scratch_vol1/fungi/Saribus_jeanneneyi/01_raw_data/ITS
-OUTPUT_ITS=/scratch_vol1/fungi/Saribus_jeanneneyi/02_pooled_data/ITS
+DATADIRECTORY_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/01_raw_data/ITS
+OUTPUT_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/02_pooled_data/ITS
 
 WORKING_DIRECTORY=/scratch_vol1/fungi/Saribus_jeanneneyi
 
 # pathways in local:
-#DATADIRECTORY_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/21_Saribus/Saribus_jeanneneyi/00_raw_data/16S
-#OUTPUT_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/21_Saribus/Saribus_jeanneneyi/01_pooled/16S
+#DATADIRECTORY_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/00_raw_data/16S
+#OUTPUT_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/01_pooled/16S
 
-#DATADIRECTORY_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/21_Saribus/Saribus_jeanneneyi/00_raw_data/ITS
-#OUTPUT_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/21_Saribus/Saribus_jeanneneyi/01_pooled/ITS
+#DATADIRECTORY_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/00_raw_data/ITS
+#OUTPUT_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/01_pooled/ITS
 
 # WARNING : HERE ITS NOT NECESSARY TO POOL SEQ, ONLY CHANGE THE NAME
 
