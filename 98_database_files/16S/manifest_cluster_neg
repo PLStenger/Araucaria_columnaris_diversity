@@ -1,2 +1,2 @@
 sample-id	forward-absolute-filepath	reverse-absolute-filepath
-Ac-NEG	/scratch_vol1/fungi/Araucaria_columnaris_diversity/02_pooled_data/16S/Ac-NEG-T11-1_S105_R1.paired.fastq.gz	/scratch_vol1/fungi/Araucaria_columnaris_diversity/02_pooled_data/16S/Ac-NEG-T11-1_S105_R2.paired.fastq.gz
+Ac-NEG	/scratch_vol1/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S/Ac-NEG-T11-1_S105_R1.paired.fastq.gz	/scratch_vol1/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S/Ac-NEG-T11-1_S105_R2.paired.fastq.gz
