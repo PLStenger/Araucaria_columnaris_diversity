@@ -7,7 +7,7 @@ OUTPUT_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/02_pooled_data/16S
 DATADIRECTORY_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/01_raw_data/ITS
 OUTPUT_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/02_pooled_data/ITS
 
-WORKING_DIRECTORY=/scratch_vol1/fungi/Saribus_jeanneneyi
+WORKING_DIRECTORY=/scratch_vol1/fungi/Jaunet
 
 # pathways in local:
 #DATADIRECTORY_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/00_raw_data/16S
