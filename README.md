@@ -41,10 +41,14 @@ First, open your terminal. Then, run these two command lines :
     >sys	0m0,197s
   
     time nohup bash 02_trimmomatic_q30.sh &> 02_trimmomatic_q30.out
-    >
+    >real    0m41,915s
+    >user    0m50,683s
+    >sys     0m10,883s
   
     time nohup bash 03_cleaned_data_quality_check_by_FastQC.sh &> 03_cleaned_data_quality_check_by_FastQC.out
-    >
+    >real    9m57,629s
+    >user    7m1,385s
+    >sys     0m59,077s
   
     time nohup bash 04_qiime2_import_PE.sh &> 04_qiime2_import_PE.out
     >
