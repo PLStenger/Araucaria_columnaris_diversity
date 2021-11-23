@@ -1,6 +1,14 @@
 # Araucaria_columnaris_diversity
 Soil diversity of Araucaria columnaris after modalities
 
+  <div align="center">
+  <img src="https://github.com/PLStenger/Diversity_in_Mare_yam_crop/blob/main/98_database/location.png" width="800">
+  </div>
+  
+  <div align="center">
+  <img src="https://github.com/PLStenger/Diversity_in_Mare_yam_crop/blob/main/98_database/plan.png" width="800">
+  </div>
+
 ### Installing pipeline :
 
 
