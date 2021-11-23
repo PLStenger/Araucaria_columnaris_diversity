@@ -8,6 +8,10 @@ Soil diversity of Araucaria columnaris after modalities
   <div align="center">
   <img src="https://github.com/PLStenger/Araucaria_columnaris_diversity/blob/main/98_database/plan.png" width="800">
   </div>
+  
+  <div align="center">
+  <img src="https://github.com/PLStenger/Araucaria_columnaris_diversity/98_database/plan.png" width="800">
+  </div>
 
 ### Installing pipeline :
 
