@@ -36,31 +36,38 @@ First, open your terminal. Then, run these two command lines :
     >
    
     time nohup bash 01_renamed_sequences.sh &> 01_renamed_sequences.out
-    >real	0m0,265s
-    >user	0m0,091s
-    >sys	0m0,197s
+    >real    0m6,330s
+    >user    0m0,232s
+    >sys     0m4,701s
   
     time nohup bash 02_trimmomatic_q30.sh &> 02_trimmomatic_q30.out
-    >real    0m41,915s
-    >user    0m50,683s
-    >sys     0m10,883s
+    >real    41m35,018s
+    >user    309m11,465s
+    >sys     13m1,504s
   
     time nohup bash 03_cleaned_data_quality_check_by_FastQC.sh &> 03_cleaned_data_quality_check_by_FastQC.out
-    >real    9m57,629s
-    >user    7m1,385s
-    >sys     0m59,077s
+    >real    28m43,982s
+    >user    46m7,827s
+    >sys     2m23,757s
   
     time nohup bash 04_qiime2_import_PE.sh &> 04_qiime2_import_PE.out
-    >
+    >real    2m56,406s
+    >user    3m1,659s
+    >sys     0m32,491s
   
     time nohup bash 05_qiime2_denoise_PE.sh &> 05_qiime2_denoise_PE.out
-    >
+    >real    110m13,095s
+    >user    439m13,343s
+    >sys     11m6,202s
   
     time nohup bash 06_qiime2_tree_PE.sh &> 06_qiime2_tree_PE.out
-    >
+    >real    2m25,455s
+    >user    2m34,535s
+    >sys     0m30,088s
   
     time nohup bash 07_qiime2_rarefaction_PE.sh &> 07_qiime2_rarefaction_PE.out
     >
+  
     time nohup bash 08_qiime2_calculate_and_explore_diversity_metrics_PE.sh &> 08_qiime2_calculate_and_explore_diversity_metrics_PE.out
     >
   
