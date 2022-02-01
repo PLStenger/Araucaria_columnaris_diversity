@@ -29,7 +29,7 @@ conda activate qiime2-2021.4
 qiime feature-table filter-samples \
         --i-table core/RarTable.qza \
         --m-metadata-file $METADATA_ITS/sample-metadata.tsv \
-        --p-where "[#SampleID] IN ('Ac-A-D1-1A', 'Ac-A-D1-1B', 'Ac-A-D1-2A', 'Ac-A-D1-2B', 'Ac-A-D2-1A', 'Ac-A-D2-1B', 'Ac-A-D2-2A', 'Ac-A-D2-2B', 'Ac-A-T-1A', 'Ac-A-T-1A', 'Ac-A-T-1B', 'Ac-A-T-1B', 'Ac-A-T-2A', 'Ac-A-T-2A', 'Ac-A-T-2B', 'Ac-A-T-2B', 'Ac-B-D1-1A', 'Ac-B-D1-1B', 'Ac-B-D1-2A', 'Ac-B-D1-2B', 'Ac-B-D2-1A', 'Ac-B-D2-1B', 'Ac-B-D2-2A', 'Ac-B-D2-2B', 'Ac-B-T-1A', 'Ac-B-T-1A', 'Ac-B-T-1B', 'Ac-B-T-1B', 'Ac-B-T-2A', 'Ac-B-T-2A', 'Ac-B-T-2B', 'Ac-B-T-2B', 'Ac-C-D1-1A', 'Ac-C-D1-1B', 'Ac-C-D1-2A', 'Ac-C-D1-2B', 'Ac-C-D2-1A', 'Ac-C-D2-1B', 'Ac-C-D2-2A', 'Ac-C-D2-2B', 'Ac-C-T-1A', 'Ac-C-T-1A', 'Ac-C-T-1B', 'Ac-C-T-1B', 'Ac-C-T-2A', 'Ac-C-T-2A', 'Ac-C-T-2B', 'Ac-C-T-2B')"  \
+        --p-where "[#SampleID] IN ('Ac-A-D1-1A', 'Ac-A-D1-1B', 'Ac-A-D1-2B', 'Ac-A-D2-1A', 'Ac-A-D2-1B', 'Ac-A-D2-2A', 'Ac-A-D2-2B', 'Ac-A-Tneg-1A', 'Ac-A-Tneg-1B', 'Ac-A-Tneg-2A', 'Ac-A-Tneg-2B', 'Ac-A-Tpos-1A', 'Ac-A-Tpos-1B', 'Ac-A-Tpos-2A', 'Ac-A-Tpos-2B', 'Ac-B-D1-1A', 'Ac-B-D1-1B', 'Ac-B-D1-2A', 'Ac-B-D1-2B', 'Ac-B-D2-1A', 'Ac-B-D2-1B', 'Ac-B-D2-2A', 'Ac-B-D2-2B', 'Ac-B-Tneg-1A', 'Ac-B-Tneg-2A', 'Ac-B-Tneg-2B', 'Ac-B-Tpos-1A', 'Ac-B-Tpos-1B', 'Ac-B-Tpos-2A', 'Ac-B-Tpos-2B', 'Ac-C-D1-1A', 'Ac-C-D1-1B', 'Ac-C-D1-2A', 'Ac-C-D1-2B', 'Ac-C-D2-1A', 'Ac-C-D2-1B', 'Ac-C-D2-2A', 'Ac-C-D2-2B', 'Ac-C-Tneg-1A', 'Ac-C-Tneg-1B', 'Ac-C-Tneg-2A', 'Ac-C-Tneg-2B', 'Ac-C-Tpos-1A', 'Ac-C-Tpos-1B', 'Ac-C-Tpos-2A', 'Ac-C-Tpos-2B')"  \
         --o-filtered-table core/RarTable-all.qza
 
         
@@ -76,7 +76,7 @@ conda activate qiime2-2021.4
  qiime feature-table filter-samples \
         --i-table core/RarTable.qza \
         --m-metadata-file $METADATA_ITS/sample-metadata.tsv \
-        --p-where "[#SampleID] IN ('Ac-A-D1-1A', 'Ac-A-D1-1B', 'Ac-A-D1-2A', 'Ac-A-D1-2B', 'Ac-A-D2-1A', 'Ac-A-D2-1B', 'Ac-A-D2-2A', 'Ac-A-D2-2B', 'Ac-A-T-1A', 'Ac-A-T-1A', 'Ac-A-T-1B', 'Ac-A-T-1B', 'Ac-A-T-2A', 'Ac-A-T-2A', 'Ac-A-T-2B', 'Ac-A-T-2B', 'Ac-B-D1-1A', 'Ac-B-D1-1B', 'Ac-B-D1-2A', 'Ac-B-D1-2B', 'Ac-B-D2-1A', 'Ac-B-D2-1B', 'Ac-B-D2-2A', 'Ac-B-D2-2B', 'Ac-B-T-1A', 'Ac-B-T-1A', 'Ac-B-T-1B', 'Ac-B-T-1B', 'Ac-B-T-2A', 'Ac-B-T-2A', 'Ac-B-T-2B', 'Ac-B-T-2B', 'Ac-C-D1-1A', 'Ac-C-D1-1B', 'Ac-C-D1-2A', 'Ac-C-D1-2B', 'Ac-C-D2-1A', 'Ac-C-D2-1B', 'Ac-C-D2-2A', 'Ac-C-D2-2B', 'Ac-C-T-1A', 'Ac-C-T-1A', 'Ac-C-T-1B', 'Ac-C-T-1B', 'Ac-C-T-2A', 'Ac-C-T-2A', 'Ac-C-T-2B', 'Ac-C-T-2B')"  \
+        --p-where "[#SampleID] IN ('Ac-A-D1-1A', 'Ac-A-D1-1B', 'Ac-A-D1-2B', 'Ac-A-D2-1A', 'Ac-A-D2-1B', 'Ac-A-D2-2A', 'Ac-A-D2-2B', 'Ac-A-Tneg-1A', 'Ac-A-Tneg-1B', 'Ac-A-Tneg-2A', 'Ac-A-Tneg-2B', 'Ac-A-Tpos-1A', 'Ac-A-Tpos-1B', 'Ac-A-Tpos-2A', 'Ac-A-Tpos-2B', 'Ac-B-D1-1A', 'Ac-B-D1-1B', 'Ac-B-D1-2A', 'Ac-B-D1-2B', 'Ac-B-D2-1A', 'Ac-B-D2-1B', 'Ac-B-D2-2A', 'Ac-B-D2-2B', 'Ac-B-Tneg-1A', 'Ac-B-Tneg-2A', 'Ac-B-Tneg-2B', 'Ac-B-Tpos-1A', 'Ac-B-Tpos-1B', 'Ac-B-Tpos-2A', 'Ac-B-Tpos-2B', 'Ac-C-D1-1A', 'Ac-C-D1-1B', 'Ac-C-D1-2A', 'Ac-C-D1-2B', 'Ac-C-D2-1A', 'Ac-C-D2-1B', 'Ac-C-D2-2A', 'Ac-C-D2-2B', 'Ac-C-Tneg-1A', 'Ac-C-Tneg-1B', 'Ac-C-Tneg-2A', 'Ac-C-Tneg-2B', 'Ac-C-Tpos-1A', 'Ac-C-Tpos-1B', 'Ac-C-Tpos-2A', 'Ac-C-Tpos-2B')"  \
         --o-filtered-table core/RarTable-all.qza
            
            
