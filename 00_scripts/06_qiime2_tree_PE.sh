@@ -4,6 +4,8 @@
 DATADIRECTORY_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/05_QIIME2/ITS
 DATADIRECTORY_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/05_QIIME2/16S
 
+TMPDIR=/scratch_vol1
+
 # pathways in local:
 #DATADIRECTORY_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/05_QIIME2/ITS
 #DATADIRECTORY_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/05_QIIME2/16S
@@ -22,6 +24,10 @@ mkdir -p export/tree
 
 eval "$(conda shell.bash hook)"
 conda activate qiime2-2021.4
+
+ # I'm doing this step in order to deal the no space left in cluster :
+export TMPDIR='/scratch_vol1/fungi'
+echo $TMPDIR
 
 #carry out a multiple seqeunce alignment using Mafft
  qiime alignment mafft \
@@ -70,6 +76,10 @@ mkdir -p export/tree
 
 eval "$(conda shell.bash hook)"
 conda activate qiime2-2021.4
+
+ # I'm doing this step in order to deal the no space left in cluster :
+export TMPDIR='/scratch_vol1/fungi'
+echo $TMPDIR
 
 #carry out a multiple seqeunce alignment using Mafft
  qiime alignment mafft \
