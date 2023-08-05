@@ -28,6 +28,8 @@ MANIFEST_BACTERIA_NEG=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_data
 mkdir -p $OUTPUT_ITS
 mkdir -p $OUTPUT_16S
 
+TMPDIR=/scratch_vol1
+
 ###############################################################
 ### For Fungi
 ###############################################################
@@ -40,6 +42,10 @@ conda activate qiime2-2021.4
 # Make the directory (mkdir) only if not existe already(-p)
 mkdir -p $OUTPUT_ITS/core
 mkdir -p $OUTPUT_ITS/visual
+
+# I'm doing this step in order to deal the no space left in cluster :
+export TMPDIR='/scratch_vol1/fungi'
+echo $TMPDIR
 
 qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
 			    --input-path  $MANIFEST_FUNGI \
@@ -81,6 +87,10 @@ conda activate qiime2-2021.4
 # Make the directory (mkdir) only if not existe already(-p)
 mkdir -p $OUTPUT_16S/core
 mkdir -p $OUTPUT_16S/visual
+
+# I'm doing this step in order to deal the no space left in cluster :
+export TMPDIR='/scratch_vol1/fungi'
+echo $TMPDIR
 
 qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
 			    --input-path  $MANIFEST_BACTERIA \
