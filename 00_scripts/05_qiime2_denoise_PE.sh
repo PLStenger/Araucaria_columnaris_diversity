@@ -7,8 +7,8 @@ DATADIRECTORY_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/05_QIIME2/1
 METADATA_FUNGI=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/ITS/sample-metadata.tsv
 METADATA_BACTERIA=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/16S/sample-metadata.tsv
 
-NEG_CONTROL_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/99_contamination/contamination_seq_ITS.fasta
-NEG_CONTROL_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/99_contamination/contamination_seq_16S.fasta
+NEG_CONTROL_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/99_contamination
+NEG_CONTROL_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/99_contamination
 
 TMPDIR=/scratch_vol1
 
@@ -90,12 +90,12 @@ echo $TMPDIR
  # Paste them in a contamination_seq.fasta file, then :
  
  qiime tools import \
-   --input-path $NEG_CONTROL_ITS \
-   --output-path core/contamination_seq_ITS.qza \
+   --input-path $NEG_CONTROL_ITS/contamination_seq_ITS.fasta \
+   --output-path $NEG_CONTROL_ITS/contamination_seq_ITS.qza \
    --type 'FeatureData[Sequence]'
 
  qiime quality-control exclude-seqs --i-query-sequences core/RepSeq.qza \
-       					     --i-reference-sequences core/contamination_seq_ITS.qza \
+       					     --i-reference-sequences $NEG_CONTROL_ITS/contamination_seq_ITS.qza/ \
        					     --p-method vsearch \
        					     --p-threads 6 \
        					     --p-perc-identity 1.00 \
@@ -221,12 +221,12 @@ qiime dada2 denoise-paired --i-demultiplexed-seqs core/demux.qza \
 # Paste them in a contamination_seq.fasta file, then :
  
 qiime tools import \
-   --input-path $NEG_CONTROL_16S \
-   --output-path core/contamination_seq_16S.qza \
+   --input-path $NEG_CONTROL_16S/contamination_seq_16S.fasta \
+   --output-path $NEG_CONTROL_16S/contamination_seq_16S.qza \
    --type 'FeatureData[Sequence]'
 
  qiime quality-control exclude-seqs --i-query-sequences core/RepSeq.qza \
-       					     --i-reference-sequences core/contamination_seq_16S.qza \
+       					     --i-reference-sequences $NEG_CONTROL_16S/contamination_seq_16S.qza \
       					     --p-method vsearch \
       					     --p-threads 6 \
       					     --p-perc-identity 1.00 \
