@@ -90,12 +90,12 @@ echo $TMPDIR
  # Paste them in a contamination_seq.fasta file, then :
  
  qiime tools import \
-   --input-path $NEG_CONTROL/contamination_seq_16S_ITS_18S.fasta \
-   --output-path $NEG_CONTROL/contamination_seq_16S_ITS_18S.qza \
+   --input-path $NEG_CONTROL_ITS \
+   --output-path core/contamination_seq_ITS.qza \
    --type 'FeatureData[Sequence]'
 
  qiime quality-control exclude-seqs --i-query-sequences core/RepSeq.qza \
-       					     --i-reference-sequences $NEG_CONTROL_ITS \
+       					     --i-reference-sequences core/contamination_seq_ITS.qza \
        					     --p-method vsearch \
        					     --p-threads 6 \
        					     --p-perc-identity 1.00 \
@@ -221,12 +221,12 @@ qiime dada2 denoise-paired --i-demultiplexed-seqs core/demux.qza \
 # Paste them in a contamination_seq.fasta file, then :
  
 qiime tools import \
-  --input-path $NEG_CONTROL/contamination_seq_16S_ITS_18S.fasta \
-  --output-path $NEG_CONTROL/contamination_seq_16S_ITS_18S.qza \
-  --type 'FeatureData[Sequence]'
+   --input-path $NEG_CONTROL_16S \
+   --output-path core/contamination_seq_16S.qza \
+   --type 'FeatureData[Sequence]'
 
-qiime quality-control exclude-seqs --i-query-sequences core/RepSeq.qza \
-      					     --i-reference-sequences $NEG_CONTROL_16S \
+ qiime quality-control exclude-seqs --i-query-sequences core/RepSeq.qza \
+       					     --i-reference-sequences core/contamination_seq_16S.qza \
       					     --p-method vsearch \
       					     --p-threads 6 \
       					     --p-perc-identity 1.00 \
