@@ -34,7 +34,8 @@ conda activate qiime2-2021.4
 export TMPDIR='/scratch_vol1/fungi'
 echo $TMPDIR
 
-# Note: max-depth should be chosen based on ConTable.qzv
+# Note: max-depth should be chosen based on ConTable.qzv (or on /scratch_vol1/fungi/Coral_block_colonisation/05_QIIME2/export/visual/ConTable/sample-frequency-detail.csv)
+
 
 qiime diversity alpha-rarefaction \
   --i-table core/ConTable.qza \
