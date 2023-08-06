@@ -7,6 +7,9 @@ DATADIRECTORY_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/05_QIIME2/1
 METADATA_FUNGI=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/ITS/sample-metadata.tsv
 METADATA_BACTERIA=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/16S/sample-metadata.tsv
 
+NEG_CONTROL_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/99_contamination/contamination_seq_ITS.fasta
+NEG_CONTROL_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/99_contamination/contamination_seq_16S.fasta
+
 TMPDIR=/scratch_vol1
 
 # pathways in local:
@@ -60,79 +63,85 @@ echo $TMPDIR
  ##################################################################
  # Negative control
  ##################################################################
- qiime dada2 denoise-paired --i-demultiplexed-seqs core/demux_neg.qza \
- --o-table core/Table_neg.qza  \
- --o-representative-sequences core/RepSeq_neg.qza \
- --o-denoising-stats core/Stats_neg.qza \
- --p-trim-left-f 0 \
- --p-trim-left-r 0 \
- --p-trunc-len-f 0 \
- --p-trunc-len-r 0 \
- --p-n-threads 4   
- 
+####  qiime dada2 denoise-paired --i-demultiplexed-seqs core/demux_neg.qza \
+####  --o-table core/Table_neg.qza  \
+####  --o-representative-sequences core/RepSeq_neg.qza \
+####  --o-denoising-stats core/Stats_neg.qza \
+####  --p-trim-left-f 0 \
+####  --p-trim-left-r 0 \
+####  --p-trunc-len-f 0 \
+####  --p-trunc-len-r 0 \
+####  --p-n-threads 4   
+####  
+
  # sequence_contamination_filter :
  #################################
- 
+
  # Aim: aligns feature sequences to a set of reference sequences
  #      to identify sequences that hit/miss the reference
  #      Use: qiime quality-control exclude-seqs [OPTIONS]
- 
- # 0.97 is the default (see https://docs.qiime2.org/2020.2/plugins/available/quality-control/exclude-seqs/)
- # Whereas N. Fernandez put 1.00 but didn't work forward (" All features were filtered out of the data." error to the step "qiime feature-table filter-seqs")
- 
+
  # Here --i-reference-sequences correspond to the negative control sample (if you don't have any, like here, take another one from an old project, the one here is from the same sequencing line (but not same project))
+
+  # 001_mini_pipeline_for_contaminated_sequences
  
+ # CATCH some ASV Solanum_crop_diversity/05_QIIME2/TUFA/export/core/RepSeq
+ # Blast them in order to catch non necessaries ASV (uncultured, unknown, etc..)
+ # Paste them in a contamination_seq.fasta file, then :
+ 
+ qiime tools import \
+   --input-path $NEG_CONTROL/contamination_seq_16S_ITS_18S.fasta \
+   --output-path $NEG_CONTROL/contamination_seq_16S_ITS_18S.qza \
+   --type 'FeatureData[Sequence]'
+
  qiime quality-control exclude-seqs --i-query-sequences core/RepSeq.qza \
-       					     --i-reference-sequences core/RepSeq_neg.qza\
+       					     --i-reference-sequences $NEG_CONTROL_ITS \
        					     --p-method vsearch \
        					     --p-threads 6 \
        					     --p-perc-identity 1.00 \
        					     --p-perc-query-aligned 1.00 \
        					     --o-sequence-hits core/HitNegCtrl.qza \
        					     --o-sequence-misses core/NegRepSeq.qza
- 
+
  # table_contamination_filter :
  ##############################
- 
+
  # Aim: filter features from table based on frequency and/or metadata
  #      Use: qiime feature-table filter-features [OPTIONS]
- 
- # --p-exclude-ids: --p-no-exclude-ids If true, the samples selected by `metadata` or `where` parameters will be excluded from the filtered table instead of being retained. [default: False]:
- 
+
  qiime feature-table filter-features --i-table core/Table.qza \
       					      --m-metadata-file core/HitNegCtrl.qza \
       					      --o-filtered-table core/NegTable.qza \
       					      --p-exclude-ids
- 
+
  # table_contingency_filter :
  ############################
- 
+
  # Aim: filter features that show up in only one samples, based on
  #      the suspicion that these may not represent real biological diversity
  #      but rather PCR or sequencing errors (such as PCR chimeras)
  #      Use: qiime feature-table filter-features [OPTIONS]
- 
+
  # contingency:
      # min_obs: 2  # Remove features that are present in only a single sample !
      # min_freq: 0 # Remove features with a total abundance (summed across all samples) of less than 0 !
- 
- 
+
+
  qiime feature-table filter-features  --i-table core/NegTable.qza \
          					       --p-min-samples 2 \
          					       --p-min-frequency 0 \
          					       --o-filtered-table core/ConTable.qza
- 
- 
+
+
  # sequence_contingency_filter :
  ###############################
- 
+
  # Aim: Filter features from sequence based on table and/or metadata
         # Use: qiime feature-table filter-seqs [OPTIONS]
- 
+
  qiime feature-table filter-seqs --i-data core/NegRepSeq.qza \
        					  --i-table core/ConTable.qza \
        					  --o-filtered-data core/ConRepSeq.qza
- 
  
  # sequence_summarize :
  ######################
@@ -195,18 +204,6 @@ qiime dada2 denoise-paired --i-demultiplexed-seqs core/demux.qza \
 --p-trunc-len-r 0 \
 --p-n-threads 4  
 
-##################################################################
-# Negative control
-##################################################################
-qiime dada2 denoise-paired --i-demultiplexed-seqs core/demux_neg.qza \
---o-table core/Table_neg.qza  \
---o-representative-sequences core/RepSeq_neg.qza \
---o-denoising-stats core/Stats_neg.qza \
---p-trim-left-f 0 \
---p-trim-left-r 0 \
---p-trunc-len-f 0 \
---p-trunc-len-r 0 \
---p-n-threads 4   
 
 # sequence_contamination_filter :
 #################################
@@ -217,26 +214,25 @@ qiime dada2 denoise-paired --i-demultiplexed-seqs core/demux_neg.qza \
 
 # Here --i-reference-sequences correspond to the negative control sample (if you don't have any, like here, take another one from an old project, the one here is from the same sequencing line (but not same project))
 
-
-######### aqiime quality-control exclude-seqs --i-query-sequences core/RepSeq.qza \
-######### a --i-reference-sequences core/RepSeq_neg.qza \
-######### a --p-method vsearch \
-######### a --p-threads 6 \
-######### a --p-perc-identity 1.00 \
-######### a --p-perc-query-aligned 1.00 \
-######### a --o-sequence-hits core/HitNegCtrl.qza \
-######### a --o-sequence-misses core/NegRepSeq.qza
-
-# /scratch_vol1/fungi/Diversity_in_Mare_yam_crop/98_database_files/V4/Negative_control_Sample_RepSeq_V4.qza
+ # 001_mini_pipeline_for_contaminated_sequences
+ 
+# CATCH some ASV Solanum_crop_diversity/05_QIIME2/TUFA/export/core/RepSeq
+# Blast them in order to catch non necessaries ASV (uncultured, unknown, etc..)
+# Paste them in a contamination_seq.fasta file, then :
+ 
+qiime tools import \
+  --input-path $NEG_CONTROL/contamination_seq_16S_ITS_18S.fasta \
+  --output-path $NEG_CONTROL/contamination_seq_16S_ITS_18S.qza \
+  --type 'FeatureData[Sequence]'
 
 qiime quality-control exclude-seqs --i-query-sequences core/RepSeq.qza \
- --i-reference-sequences /scratch_vol1/fungi/Diversity_in_Mare_yam_crop/98_database_files/V4/Negative_control_Sample_RepSeq_V4.qza \
- --p-method vsearch \
- --p-threads 6 \
- --p-perc-identity 1.00 \
- --p-perc-query-aligned 1.00 \
- --o-sequence-hits core/HitNegCtrl.qza \
- --o-sequence-misses core/NegRepSeq.qza
+      					     --i-reference-sequences $NEG_CONTROL_16S \
+      					     --p-method vsearch \
+      					     --p-threads 6 \
+      					     --p-perc-identity 1.00 \
+      					     --p-perc-query-aligned 1.00 \
+      					     --o-sequence-hits core/HitNegCtrl.qza \
+      					     --o-sequence-misses core/NegRepSeq.qza
 
 # table_contamination_filter :
 ##############################
