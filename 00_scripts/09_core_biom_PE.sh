@@ -32,25 +32,43 @@ echo $TMPDIR
 
 # Aim: Filter sample from table based on a feature table or metadata
 
-qiime feature-table filter-samples \
-        --i-table core/RarTable.qza \
-        --m-metadata-file $METADATA_ITS/sample-metadata.tsv \
-        --p-where "[#SampleID] IN ('Ac-A-D1-1A', 'Ac-A-D1-1B', 'Ac-A-D1-2B', 'Ac-A-D2-1A', 'Ac-A-D2-1B', 'Ac-A-D2-2A', 'Ac-A-D2-2B', 'Ac-A-Tneg-1A', 'Ac-A-Tneg-1B', 'Ac-A-Tneg-2A', 'Ac-A-Tneg-2B', 'Ac-A-Tpos-1A', 'Ac-A-Tpos-1B', 'Ac-A-Tpos-2A', 'Ac-A-Tpos-2B', 'Ac-B-D1-1A', 'Ac-B-D1-1B', 'Ac-B-D1-2A', 'Ac-B-D1-2B', 'Ac-B-D2-1A', 'Ac-B-D2-1B', 'Ac-B-D2-2A', 'Ac-B-D2-2B', 'Ac-B-Tneg-1A', 'Ac-B-Tneg-2A', 'Ac-B-Tneg-2B', 'Ac-B-Tpos-1A', 'Ac-B-Tpos-1B', 'Ac-B-Tpos-2A', 'Ac-B-Tpos-2B', 'Ac-C-D1-1A', 'Ac-C-D1-1B', 'Ac-C-D1-2A', 'Ac-C-D1-2B', 'Ac-C-D2-1A', 'Ac-C-D2-1B', 'Ac-C-D2-2A', 'Ac-C-D2-2B', 'Ac-C-Tneg-1A', 'Ac-C-Tneg-1B', 'Ac-C-Tneg-2A', 'Ac-C-Tneg-2B', 'Ac-C-Tpos-1A', 'Ac-C-Tpos-1B', 'Ac-C-Tpos-2A', 'Ac-C-Tpos-2B')"  \
-        --o-filtered-table core/RarTable-all.qza
+#qiime feature-table filter-samples \
+#        --i-table core/RarTable.qza \
+#        --m-metadata-file $METADATA_ITS/sample-metadata.tsv \
+#        --p-where "[#SampleID] IN ('Ac-A-D1-1A', 'Ac-A-D1-1B', 'Ac-A-D1-2B', 'Ac-A-D2-1A', 'Ac-A-D2-1B', 'Ac-A-D2-2A', 'Ac-A-D2-2B', 'Ac-A-Tneg-1A', 'Ac-A-Tneg-1B', 'Ac-A-Tneg-2A', 'Ac-A-Tneg-2B', 'Ac-A-Tpos-1A', 'Ac-A-Tpos-1B', 'Ac-A-Tpos-2A', 'Ac-A-Tpos-2B', 'Ac-B-D1-1A', 'Ac-B-D1-1B', 'Ac-B-D1-2A', 'Ac-B-D1-2B', 'Ac-B-D2-1A', 'Ac-B-D2-1B', 'Ac-B-D2-2A', 'Ac-B-D2-2B', 'Ac-B-Tneg-1A', 'Ac-B-Tneg-2A', 'Ac-B-Tneg-2B', 'Ac-B-Tpos-1A', 'Ac-B-Tpos-1B', 'Ac-B-Tpos-2A', 'Ac-B-Tpos-2B', 'Ac-C-D1-1A', 'Ac-C-D1-1B', 'Ac-C-D1-2A', 'Ac-C-D1-2B', 'Ac-C-D2-1A', 'Ac-C-D2-1B', 'Ac-C-D2-2A', 'Ac-C-D2-2B', 'Ac-C-Tneg-1A', 'Ac-C-Tneg-1B', 'Ac-C-Tneg-2A', 'Ac-C-Tneg-2B', 'Ac-C-Tpos-1A', 'Ac-C-Tpos-1B', 'Ac-C-Tpos-2A', 'Ac-C-Tpos-2B')"  \
+#        --o-filtered-table core/RarTable-all.qza
 
-        
-# Aim: Identify "core" features, which are features observed,
-     # in a user-defined fraction of the samples
+mkdir -p subtables
+mkdir -p export/subtables
+ 
+mv core/RarTable.qza subtables/RarTable-all.qza
 
-        
+    
 qiime feature-table core-features \
-        --i-table core/RarTable-all.qza \
+        --i-table subtables/RarTable-all.qza \
         --p-min-fraction 0.1 \
         --p-max-fraction 1.0 \
         --p-steps 10 \
         --o-visualization visual/CoreBiom-all.qzv  
+        
+qiime tools export --input-path subtables/RarTable-all.qza --output-path export/subtables/RarTable-all    
+qiime tools export --input-path visual/CoreBiom-all.qzv --output-path export/visual/CoreBiom-all
+biom convert -i export/subtables/RarTable-all/feature-table.biom -o export/subtables/RarTable-all/table-from-biom.tsv --to-tsv
+sed '1d ; s/\#OTU ID/ASV_ID/' export/subtables/RarTable-all/table-from-biom.tsv > export/subtables/RarTable-all/ASV.tsv
 
-qiime tools export --input-path core/RarTable-all.qza --output-path export/core/RarTable-all    
+   
+# Aim: Identify "core" features, which are features observed,
+     # in a user-defined fraction of the samples
+
+        
+#qiime feature-table core-features \
+#        --i-table core/RarTable-all.qza \
+#        --p-min-fraction 0.1 \
+#        --p-max-fraction 1.0 \
+#        --p-steps 10 \
+#        --o-visualization visual/CoreBiom-all.qzv  
+
+#qiime tools export --input-path core/RarTable-all.qza --output-path export/core/RarTable-all    
         
 #qiime tools export --input-path visual/CoreBiomAll.qzv --output-path export/visual/CoreBiomAll
 qiime tools export --input-path visual/CoreBiom-all.qzv --output-path export/visual/CoreBiom-all
@@ -83,22 +101,42 @@ echo $TMPDIR
 
 # Aim: Filter sample from table based on a feature table or metadata
 
- qiime feature-table filter-samples \
-        --i-table core/RarTable.qza \
-        --m-metadata-file $METADATA_ITS/sample-metadata.tsv \
-        --p-where "[#SampleID] IN ('Ac-A-D1-1A', 'Ac-A-D1-1B', 'Ac-A-D1-2B', 'Ac-A-D2-1A', 'Ac-A-D2-1B', 'Ac-A-D2-2A', 'Ac-A-D2-2B', 'Ac-A-Tneg-1A', 'Ac-A-Tneg-1B', 'Ac-A-Tneg-2A', 'Ac-A-Tneg-2B', 'Ac-A-Tpos-1A', 'Ac-A-Tpos-1B', 'Ac-A-Tpos-2A', 'Ac-A-Tpos-2B', 'Ac-B-D1-1A', 'Ac-B-D1-1B', 'Ac-B-D1-2A', 'Ac-B-D1-2B', 'Ac-B-D2-1A', 'Ac-B-D2-1B', 'Ac-B-D2-2A', 'Ac-B-D2-2B', 'Ac-B-Tneg-1A', 'Ac-B-Tneg-2A', 'Ac-B-Tneg-2B', 'Ac-B-Tpos-1A', 'Ac-B-Tpos-1B', 'Ac-B-Tpos-2A', 'Ac-B-Tpos-2B', 'Ac-C-D1-1A', 'Ac-C-D1-1B', 'Ac-C-D1-2A', 'Ac-C-D1-2B', 'Ac-C-D2-1A', 'Ac-C-D2-1B', 'Ac-C-D2-2A', 'Ac-C-D2-2B', 'Ac-C-Tneg-1A', 'Ac-C-Tneg-1B', 'Ac-C-Tneg-2A', 'Ac-C-Tneg-2B', 'Ac-C-Tpos-1A', 'Ac-C-Tpos-1B', 'Ac-C-Tpos-2A', 'Ac-C-Tpos-2B')"  \
-        --o-filtered-table core/RarTable-all.qza
+mkdir -p subtables
+mkdir -p export/subtables
+ 
+mv core/RarTable.qza subtables/RarTable-all.qza
+
+    
+qiime feature-table core-features \
+        --i-table subtables/RarTable-all.qza \
+        --p-min-fraction 0.1 \
+        --p-max-fraction 1.0 \
+        --p-steps 10 \
+        --o-visualization visual/CoreBiom-all.qzv  
+        
+qiime tools export --input-path subtables/RarTable-all.qza --output-path export/subtables/RarTable-all    
+qiime tools export --input-path visual/CoreBiom-all.qzv --output-path export/visual/CoreBiom-all
+biom convert -i export/subtables/RarTable-all/feature-table.biom -o export/subtables/RarTable-all/table-from-biom.tsv --to-tsv
+sed '1d ; s/\#OTU ID/ASV_ID/' export/subtables/RarTable-all/table-from-biom.tsv > export/subtables/RarTable-all/ASV.tsv
+
+   
+
+# qiime feature-table filter-samples \
+#        --i-table core/RarTable.qza \
+#        --m-metadata-file $METADATA_ITS/sample-metadata.tsv \
+#        --p-where "[#SampleID] IN ('Ac-A-D1-1A', 'Ac-A-D1-1B', 'Ac-A-D1-2B', 'Ac-A-D2-1A', 'Ac-A-D2-1B', 'Ac-A-D2-2A', 'Ac-A-D2-2B', 'Ac-A-Tneg-1A', 'Ac-A-Tneg-1B', 'Ac-A-Tneg-2A', 'Ac-A-Tneg-2B', 'Ac-A-Tpos-1A', 'Ac-A-Tpos-1B', 'Ac-A-Tpos-2A', 'Ac-A-Tpos-2B', 'Ac-B-D1-1A', 'Ac-B-D1-1B', 'Ac-B-D1-2A', 'Ac-B-D1-2B', 'Ac-B-D2-1A', 'Ac-B-D2-1B', 'Ac-B-D2-2A', 'Ac-B-D2-2B', 'Ac-B-Tneg-1A', 'Ac-B-Tneg-2A', 'Ac-B-Tneg-2B', 'Ac-B-Tpos-1A', 'Ac-B-Tpos-1B', 'Ac-B-Tpos-2A', 'Ac-B-Tpos-2B', 'Ac-C-D1-1A', 'Ac-C-D1-1B', 'Ac-C-D1-2A', 'Ac-C-D1-2B', 'Ac-C-D2-1A', 'Ac-C-D2-1B', 'Ac-C-D2-2A', 'Ac-C-D2-2B', 'Ac-C-Tneg-1A', 'Ac-C-Tneg-1B', 'Ac-C-Tneg-2A', 'Ac-C-Tneg-2B', 'Ac-C-Tpos-1A', 'Ac-C-Tpos-1B', 'Ac-C-Tpos-2A', 'Ac-C-Tpos-2B')"  \
+#        --o-filtered-table core/RarTable-all.qza
            
            
 # Aim: Identify "core" features, which are features observed,
      # in a user-defined fraction of the samples
 
-qiime feature-table core-features \
-        --i-table core/RarTable-all.qza \
-        --p-min-fraction 0.1 \
-        --p-max-fraction 1.0 \
-        --p-steps 10 \
-        --o-visualization visual/CoreBiom-all.qzv
+#qiime feature-table core-features \
+#        --i-table core/RarTable-all.qza \
+#        --p-min-fraction 0.1 \
+#        --p-max-fraction 1.0 \
+#        --p-steps 10 \
+#        --o-visualization visual/CoreBiom-all.qzv
         
 qiime tools export --input-path core/RarTable-all.qza --output-path export/core/RarTable-all    
         
