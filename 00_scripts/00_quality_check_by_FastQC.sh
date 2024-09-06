@@ -7,11 +7,11 @@
 # Correct tool citation : Andrews, S. (2010). FastQC: a quality control tool for high throughput sequence data.
 
 # pathways in cluster:
-WORKING_DIRECTORY=/scratch_vol1/fungi/Araucaria_columnaris_diversity
-DATA_DIRECTORY_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/01_raw_data/ITS
-DATA_DIRECTORY_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/01_raw_data/16S
-OUT_PUT_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/02_quality_check/OUT_PUT_ITS
-OUT_PUT_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/02_quality_check/OUT_PUT_16S
+WORKING_DIRECTORY=/home/fungi/Araucaria_columnaris_diversity
+DATA_DIRECTORY_ITS=/home/fungi/Araucaria_columnaris_diversity/01_raw_data/ITS
+DATA_DIRECTORY_16S=/home/fungi/Araucaria_columnaris_diversity/01_raw_data/16S
+OUT_PUT_ITS=/home/fungi/Araucaria_columnaris_diversity/02_quality_check/OUT_PUT_ITS
+OUT_PUT_16S=/home/fungi/Araucaria_columnaris_diversity/02_quality_check/OUT_PUT_16S
 
 # pathways in local:
 #WORKING_DIRECTORY=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity
