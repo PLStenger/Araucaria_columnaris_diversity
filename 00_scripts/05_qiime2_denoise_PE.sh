@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 # pathways in cluster:
-DATADIRECTORY_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/05_QIIME2/ITS/
-DATADIRECTORY_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/05_QIIME2/16S/
+DATADIRECTORY_ITS=/home/fungi/Araucaria_columnaris_diversity/05_QIIME2/ITS/
+DATADIRECTORY_16S=/home/fungi/Araucaria_columnaris_diversity/05_QIIME2/16S/
 
-METADATA_FUNGI=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/ITS/sample-metadata.tsv
-METADATA_BACTERIA=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/16S/sample-metadata.tsv
+METADATA_FUNGI=/home/fungi/Araucaria_columnaris_diversity/98_database_files/ITS/sample-metadata.tsv
+METADATA_BACTERIA=/home/fungi/Araucaria_columnaris_diversity/98_database_files/16S/sample-metadata.tsv
 
-NEG_CONTROL_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/99_contamination
-NEG_CONTROL_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/99_contamination
+NEG_CONTROL_ITS=/home/fungi/Araucaria_columnaris_diversity/99_contamination
+NEG_CONTROL_16S=/home/fungi/Araucaria_columnaris_diversity/99_contamination
 
-TMPDIR=/scratch_vol1
+TMPDIR=/home
 
 # pathways in local:
 #DATADIRECTORY_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/05_QIIME2/Paired_end/ITS2/
@@ -39,7 +39,7 @@ TMPDIR=/scratch_vol1
  conda activate qiime2-2021.4
 
  # I'm doing this step in order to deal the no space left in cluster :
-export TMPDIR='/scratch_vol1/fungi'
+export TMPDIR='/home/fungi'
 echo $TMPDIR
  
  # dada2_denoise :
@@ -183,7 +183,7 @@ eval "$(conda shell.bash hook)"
 conda activate qiime2-2021.4
 
  # I'm doing this step in order to deal the no space left in cluster :
-export TMPDIR='/scratch_vol1/fungi'
+export TMPDIR='/home/fungi'
 echo $TMPDIR
 
 # dada2_denoise :
