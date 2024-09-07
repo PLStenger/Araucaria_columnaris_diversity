@@ -21,7 +21,7 @@ WORKING_DIRECTORY=/home/fungi/Araucaria_columnaris_diversity
 eval "$(conda shell.bash hook)"
 conda activate trimmomatic
 
-ADAPTERFILE=/home/fungi/Mayotte_microorganism_colonisation/98_database_files/adapters_sequences.fasta
+ADAPTERFILE=/home/fungi/dugong_microbiome/99_softwares/adapters_sequences.fasta
 
 
 
