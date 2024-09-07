@@ -32,7 +32,7 @@ conda activate fastqc
 cd $DATA_DIRECTORY_ITS
 
 # For ITS
-for FILE in $(ls $DATA_DIRECTORY_ITS/*.fastq.gz)
+for FILE in $(ls $DATA_DIRECTORY_ITS/*.fastq.gz.gz)
 do
       fastqc $FILE -o $OUT_PUT_ITS
 done ;
@@ -50,7 +50,7 @@ conda activate fastqc
 cd $DATA_DIRECTORY_16S
 
 # For 16S
-for FILE in $(ls $DATA_DIRECTORY_16S/*.fastq.gz)
+for FILE in $(ls $DATA_DIRECTORY_16S/*.fastq.gz.gz)
 do
       fastqc $FILE -o $OUT_PUT_16S
 done ;
