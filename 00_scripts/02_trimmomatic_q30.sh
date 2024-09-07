@@ -4,8 +4,8 @@
 # trimmomatic manual : http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf
 
 # pathways in cluster:
-DATADIRECTORY_ITS=/home/fungi/Araucaria_columnaris_diversity/02_pooled_data/ITS
-DATADIRECTORY_16S=/home/fungi/Araucaria_columnaris_diversity/02_pooled_data/16S
+DATADIRECTORY_ITS=/home/fungi/Araucaria_columnaris_diversity/01_raw_data/ITS
+DATADIRECTORY_16S=/home/fungi/Araucaria_columnaris_diversity/01_raw_data/16S
 DATAOUTPUT_16S=/home/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S
 DATAOUTPUT_16S=/home/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S
 
@@ -13,8 +13,8 @@ WORKING_DIRECTORY=/home/fungi/Araucaria_columnaris_diversity
 
 
 # pathways in local:
-#DATADIRECTORY_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/01_pooled/ITS
-#DATADIRECTORY_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/01_pooled/16S
+#DATADIRECTORY_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/01_raw_data/ITS
+#DATADIRECTORY_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/01_raw_data/16S
 #DATAOUTPUT_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S
 #DATAOUTPUT_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S
 
