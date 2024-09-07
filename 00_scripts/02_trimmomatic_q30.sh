@@ -6,7 +6,7 @@
 # pathways in cluster:
 DATADIRECTORY_ITS=/home/fungi/Araucaria_columnaris_diversity/01_raw_data/ITS
 DATADIRECTORY_16S=/home/fungi/Araucaria_columnaris_diversity/01_raw_data/16S
-DATAOUTPUT_16S=/home/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S
+DATAOUTPUT_ITS=/home/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_ITS
 DATAOUTPUT_16S=/home/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S
 
 WORKING_DIRECTORY=/home/fungi/Araucaria_columnaris_diversity
@@ -15,14 +15,13 @@ WORKING_DIRECTORY=/home/fungi/Araucaria_columnaris_diversity
 # pathways in local:
 #DATADIRECTORY_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/01_raw_data/ITS
 #DATADIRECTORY_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/01_raw_data/16S
-#DATAOUTPUT_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S
+#DATAOUTPUT_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_ITS
 #DATAOUTPUT_16S=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S
 
 eval "$(conda shell.bash hook)"
 conda activate trimmomatic
 
 ADAPTERFILE=/home/fungi/dugong_microbiome/99_softwares/adapters_sequences.fasta
-
 
 
 cd $WORKING_DIRECTORY
@@ -57,7 +56,7 @@ do
    R2paired=${R2//.fastq/_paired.fastq.gz}
    R2unpaired=${R2//.fastq/_unpaired.fastq.gz}	
 
-   trimmomatic PE -Xmx60G -threads 8 -phred33 $R1 $R2 $R1paired $DATAOUTPUT_16S/$R1unpaired $DATAOUTPUT_16S/$R2paired $DATAOUTPUT_16S/$R2unpaired ILLUMINACLIP:"$ADAPTERFILE":2:30:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:26:30 MINLEN:150
+   trimmomatic PE -Xmx60G -threads 8 -phred33 $R1 $R2 $R1paired $DATAOUTPUT_ITS/$R1unpaired $DATAOUTPUT_ITS/$R2paired $DATAOUTPUT_ITS/$R2unpaired ILLUMINACLIP:"$ADAPTERFILE":2:30:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:26:30 MINLEN:150
 
 done ;
 
