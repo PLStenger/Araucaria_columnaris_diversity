@@ -28,7 +28,7 @@ cd $WORKING_DIRECTORY
 
 # Make the directory (mkdir) only if not existe already(-p)
 mkdir -p $DATAOUTPUT_16S
-mkdir -p $DATAOUTPUT_16S
+mkdir -p $DATAOUTPUT_ITS
 
 
 # cat $ADAPTERFILE
@@ -56,7 +56,7 @@ do
    R2paired=${R2//.fastq/_paired.fastq.gz}
    R2unpaired=${R2//.fastq/_unpaired.fastq.gz}	
 
-   trimmomatic PE -Xmx60G -threads 8 -phred33 $R1 $R2 $R1paired $DATAOUTPUT_ITS/$R1unpaired $DATAOUTPUT_ITS/$R2paired $DATAOUTPUT_ITS/$R2unpaired ILLUMINACLIP:"$ADAPTERFILE":2:30:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:26:30 MINLEN:150
+   trimmomatic PE -Xmx60G -threads 8 -phred33 $R1 $R2 $DATAOUTPUT_ITS/$R1paired $DATAOUTPUT_ITS/$R1unpaired $DATAOUTPUT_ITS/$R2paired $DATAOUTPUT_ITS/$R2unpaired ILLUMINACLIP:"$ADAPTERFILE":2:30:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:26:30 MINLEN:150
 
 done ;
 
@@ -74,6 +74,6 @@ do
    R2paired=${R2//.fastq/_paired.fastq.gz}
    R2unpaired=${R2//.fastq/_unpaired.fastq.gz}	
 
-   trimmomatic PE -Xmx60G -threads 8 -phred33 $R1 $R2 $R1paired $DATAOUTPUT_16S/$R1unpaired $DATAOUTPUT_16S/$R2paired $DATAOUTPUT_16S/$R2unpaired ILLUMINACLIP:"$ADAPTERFILE":2:30:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:26:30 MINLEN:150
+   trimmomatic PE -Xmx60G -threads 8 -phred33 $R1 $R2 $DATAOUTPUT_16S/$R1paired $DATAOUTPUT_16S/$R1unpaired $DATAOUTPUT_16S/$R2paired $DATAOUTPUT_16S/$R2unpaired ILLUMINACLIP:"$ADAPTERFILE":2:30:10 LEADING:30 TRAILING:30 SLIDINGWINDOW:26:30 MINLEN:150
 
 done ;
