@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 # pathways in cluster:
-DATADIRECTORY_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/05_QIIME2/ITS/
-DATADIRECTORY_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/05_QIIME2/16S/
+DATADIRECTORY_ITS=/home/fungi/Araucaria_columnaris_diversity/05_QIIME2/ITS/
+DATADIRECTORY_16S=/home/fungi/Araucaria_columnaris_diversity/05_QIIME2/16S/
 
-METADATA_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/ITS/
-METADATA_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/16S/
+METADATA_ITS=/home/fungi/Araucaria_columnaris_diversity/98_database_files/ITS/
+METADATA_16S=/home/fungi/Araucaria_columnaris_diversity/98_database_files/16S/
 
-TMPDIR=/scratch_vol1
+TMPDIR=/home
 
 #### pathways in local:
 ####DATADIRECTORY_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/05_QIIME2/ITS/
@@ -43,11 +43,11 @@ mkdir -p taxonomy
 mkdir -p export/taxonomy
 
 # I'm doing this step in order to deal the no space left in cluster :
-export TMPDIR='/scratch_vol1/fungi'
+export TMPDIR='/home/fungi'
 echo $TMPDIR
 
-#print 'ls /scratch_vol1/fungi'
-#ls /scratch_vol1/fungi
+#print 'ls /home/fungi'
+#ls /home/fungi
 
 #env
 
@@ -63,20 +63,20 @@ echo $TMPDIR
 # Abarenkov, Kessy; Zirk, Allan; Piirmann, Timo; Pöhönen, Raivo; Ivanov, Filipp; Nilsson, R. Henrik; Kõljalg, Urmas (2021): UNITE QIIME release for Fungi 2. Version 10.05.2021. UNITE Community. https://doi.org/10.15156/BIO/1264763 
 # Includes global and 97% singletons.
 
-# OLD = /scratch_vol1/fungi/Diversity_in_Mare_yam_crop/98_database_files/ITS2/Taxonomy-UNITE-V7-S-2017.12.01-dynamic.txt
+# OLD = /home/fungi/Diversity_in_Mare_yam_crop/98_database_files/ITS2/Taxonomy-UNITE-V7-S-2017.12.01-dynamic.txt
 
 qiime tools import --type 'FeatureData[Taxonomy]' \
   --input-format HeaderlessTSVTaxonomyFormat \
-  --input-path /scratch_vol1/fungi/Pycnandra/98_database_files/ITS/sh_taxonomy_qiime_ver8_dynamic_s_10.05.2021.txt \
+  --input-path /home/fungi/Pycnandra/98_database_files/ITS/sh_taxonomy_qiime_ver8_dynamic_s_10.05.2021.txt \
   --output-path taxonomy/RefTaxo.qza
 
 # You will need to importe the "Sequence-UNITE-V7-S-2017.12.01-dynamic.fasta" file by yourself because it's to big for beeing upload by GitHub.
 # You can donwload it from here : https://gitlab.com/IAC_SolVeg/CNRT_BIOINDIC/-/tree/master/inp/qiime2/taxonomy/ITS
 
-# OLD = /scratch_vol1/fungi/Diversity_in_Mare_yam_crop/98_database_files/ITS2/Sequence-UNITE-V7-S-2017.12.01-dynamic.fasta
+# OLD = /home/fungi/Diversity_in_Mare_yam_crop/98_database_files/ITS2/Sequence-UNITE-V7-S-2017.12.01-dynamic.fasta
 
 qiime tools import --type 'FeatureData[Sequence]' \
-  --input-path /scratch_vol1/fungi/Pycnandra/98_database_files/ITS/sh_refs_qiime_ver8_dynamic_s_10.05.2021.fasta \
+  --input-path /home/fungi/Pycnandra/98_database_files/ITS/sh_refs_qiime_ver8_dynamic_s_10.05.2021.fasta \
   --output-path taxonomy/DataSeq.qza
 
 # Fungal ITS classifiers trained on the UNITE reference database do NOT benefit
@@ -189,7 +189,7 @@ mkdir -p taxonomy
 mkdir -p export/taxonomy
 
 # I'm doing this step in order to deal the no space left in cluster :
-export TMPDIR='/scratch_vol1/fungi'
+export TMPDIR='/home/fungi'
 echo $TMPDIR
 
 echo '##############################################################################################################################'
@@ -262,8 +262,8 @@ echo '##########################################################################
 ###cp $METADATA_16S/SILVA-138-SSURef-Full-Seqs.qza taxonomy/DataSeq.qza
 ###cp $METADATA_16S/Silva-v138-full-length-seq-taxonomy.qza taxonomy/RefTaxo.qza
 
-cp /scratch_vol1/fungi/Diversity_in_Mare_yam_crop/98_database_files/V4/SILVA-138-SSURef-Full-Seqs.qza taxonomy/DataSeq.qza
-cp /scratch_vol1/fungi/Diversity_in_Mare_yam_crop/98_database_files/V4/Silva-v138-full-length-seq-taxonomy.qza taxonomy/RefTaxo.qza
+cp /home/fungi/Diversity_in_Mare_yam_crop/98_database_files/V4/SILVA-138-SSURef-Full-Seqs.qza taxonomy/DataSeq.qza
+cp /home/fungi/Diversity_in_Mare_yam_crop/98_database_files/V4/Silva-v138-full-length-seq-taxonomy.qza taxonomy/RefTaxo.qza
 
 # Here only for 16S --> forward: 'GTGCCAGCMGCCGCGGTAA'  # 515f & reverse: 'GGACTACHVGGGTWTCTAAT' # 806r
 #qiime feature-classifier extract-reads --i-sequences taxonomy/DataSeq.qza \
