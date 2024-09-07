@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 # pathways in cluster:
-DATADIRECTORY_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_ITS
-DATADIRECTORY_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S
+DATADIRECTORY_ITS=/home/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_ITS
+DATADIRECTORY_16S=/home/fungi/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_16S
 
-OUTPUT_ITS=/scratch_vol1/fungi/Araucaria_columnaris_diversity/05_QIIME2/ITS
-OUTPUT_16S=/scratch_vol1/fungi/Araucaria_columnaris_diversity/05_QIIME2/16S
+OUTPUT_ITS=/home/fungi/Araucaria_columnaris_diversity/05_QIIME2/ITS
+OUTPUT_16S=/home/fungi/Araucaria_columnaris_diversity/05_QIIME2/16S
 
-MANIFEST_FUNGI=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/ITS/manifest_cluster
-MANIFEST_BACTERIA=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/16S/manifest_cluster
+MANIFEST_FUNGI=/home/fungi/Araucaria_columnaris_diversity/98_database_files/ITS/manifest_cluster
+MANIFEST_BACTERIA=/home/fungi/Araucaria_columnaris_diversity/98_database_files/16S/manifest_cluster
 
 # For negative samples
-MANIFEST_FUNGI_NEG=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/ITS/manifest_cluster_neg
-MANIFEST_BACTERIA_NEG=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_database_files/16S/manifest_cluster_neg
+MANIFEST_FUNGI_NEG=/home/fungi/Araucaria_columnaris_diversity/98_database_files/ITS/manifest_cluster_neg
+MANIFEST_BACTERIA_NEG=/home/fungi/Araucaria_columnaris_diversity/98_database_files/16S/manifest_cluster_neg
 
 # pathways in local:
 #DATADIRECTORY_ITS=/Users/pierre-louisstenger/Documents/PostDoc_02_MetaBarcoding_IAC/02_Data/18_Araucaria/Araucaria_columnaris_diversity/03_cleaned_data/DATAOUTPUT_ITS
@@ -28,7 +28,7 @@ MANIFEST_BACTERIA_NEG=/scratch_vol1/fungi/Araucaria_columnaris_diversity/98_data
 mkdir -p $OUTPUT_ITS
 mkdir -p $OUTPUT_16S
 
-TMPDIR=/scratch_vol1
+TMPDIR=/home
 
 ###############################################################
 ### For Fungi
@@ -44,7 +44,7 @@ mkdir -p $OUTPUT_ITS/core
 mkdir -p $OUTPUT_ITS/visual
 
 # I'm doing this step in order to deal the no space left in cluster :
-export TMPDIR='/scratch_vol1/fungi'
+export TMPDIR='/home/fungi'
 echo $TMPDIR
 
 qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
@@ -89,7 +89,7 @@ mkdir -p $OUTPUT_16S/core
 mkdir -p $OUTPUT_16S/visual
 
 # I'm doing this step in order to deal the no space left in cluster :
-export TMPDIR='/scratch_vol1/fungi'
+export TMPDIR='/home/fungi'
 echo $TMPDIR
 
 qiime tools import --type 'SampleData[PairedEndSequencesWithQuality]' \
