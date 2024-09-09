@@ -67,7 +67,7 @@ echo $TMPDIR
 
 qiime tools import --type 'FeatureData[Taxonomy]' \
   --input-format HeaderlessTSVTaxonomyFormat \
-  --input-path /home/fungi/Pycnandra/98_database_files/ITS/sh_taxonomy_qiime_ver8_dynamic_s_10.05.2021.txt \
+  --input-path /home/fungi/Mayotte_microorganism_colonisation/98_database_files/sh_taxonomy_qiime_ver8_dynamic_s_10.05.2021.txt \
   --output-path taxonomy/RefTaxo.qza
 
 # You will need to importe the "Sequence-UNITE-V7-S-2017.12.01-dynamic.fasta" file by yourself because it's to big for beeing upload by GitHub.
@@ -76,7 +76,7 @@ qiime tools import --type 'FeatureData[Taxonomy]' \
 # OLD = /home/fungi/Diversity_in_Mare_yam_crop/98_database_files/ITS2/Sequence-UNITE-V7-S-2017.12.01-dynamic.fasta
 
 qiime tools import --type 'FeatureData[Sequence]' \
-  --input-path /home/fungi/Pycnandra/98_database_files/ITS/sh_refs_qiime_ver8_dynamic_s_10.05.2021.fasta \
+  --input-path /home/fungi/Mayotte_microorganism_colonisation/98_database_files/sh_refs_qiime_ver8_dynamic_s_10.05.2021.fasta \
   --output-path taxonomy/DataSeq.qza
 
 # Fungal ITS classifiers trained on the UNITE reference database do NOT benefit
@@ -262,8 +262,8 @@ echo '##########################################################################
 ###cp $METADATA_16S/SILVA-138-SSURef-Full-Seqs.qza taxonomy/DataSeq.qza
 ###cp $METADATA_16S/Silva-v138-full-length-seq-taxonomy.qza taxonomy/RefTaxo.qza
 
-cp /home/fungi/Diversity_in_Mare_yam_crop/98_database_files/V4/SILVA-138-SSURef-Full-Seqs.qza taxonomy/DataSeq.qza
-cp /home/fungi/Diversity_in_Mare_yam_crop/98_database_files/V4/Silva-v138-full-length-seq-taxonomy.qza taxonomy/RefTaxo.qza
+cp /home/fungi/Mayotte_microorganism_colonisation/98_database_files/SILVA-138-SSURef-Full-Seqs.qza taxonomy/16S/DataSeq.qza
+cp /home/fungi/Mayotte_microorganism_colonisation/98_database_files/Silva-v138-full-length-seq-taxonomy.qza taxonomy/16S/RefTaxo.qza
 
 # Here only for 16S --> forward: 'GTGCCAGCMGCCGCGGTAA'  # 515f & reverse: 'GGACTACHVGGGTWTCTAAT' # 806r
 #qiime feature-classifier extract-reads --i-sequences taxonomy/DataSeq.qza \
