@@ -92,7 +92,7 @@ echo $TMPDIR
 qiime diversity alpha-rarefaction \
   --i-table core/ConTable.qza \
   --i-phylogeny tree/rooted-tree.qza \
-  --p-max-depth 11552 \
+  --p-max-depth 7967 \
   --p-min-depth 1 \
   --m-metadata-file $METADATA_16S/sample-metadata.tsv \
   --o-visualization visual/alpha-rarefaction.qzv
