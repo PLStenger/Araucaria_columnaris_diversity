@@ -281,17 +281,20 @@ records = {}
 for fq in fastqs:
     filename = fq.name
 
-    if "_R1_" in filename:
-        direction = "R1"
-        sample_id = filename.split("_R1_", 1)[0]
-    elif "_R2_" in filename:
-        direction = "R2"
-        sample_id = filename.split("_R2_", 1)[0]
-    else:
-        raise SystemExit(
-            f"Impossible d'identifier R1/R2 dans le nom de fichier : {filename}. "
-            "Le nom doit contenir _R1_ ou _R2_."
-        )
+ match = re.match(
+    r"^(?P<sample_id>.+)_S\d+_L\d{3}_R(?P<read>[12])_\d{3}\.fastq\.gz$",
+    filename
+)
+
+if match is None:
+    raise SystemExit(
+        f"Nom FASTQ non reconnu : {filename}\n"
+        "Format attendu, par exemple : "
+        "Ac-A-D1-1A-T11-1_S25_L001_R1_001.fastq.gz"
+    )
+
+sample_id = match.group("sample_id")
+direction = f"R{match.group('read')}"
 
     if sample_id in records and direction in records[sample_id]:
         raise SystemExit(
