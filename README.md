@@ -27,6 +27,8 @@ First, open your terminal. Then, run these two command lines :
 
 ### Running pipeline :
 
+    time nohup 001_pipeline_QIIME2_PE_Araucaria_columnaris_diversity.sh &> 001_pipeline_QIIME2_PE_Araucaria_columnaris_diversity.out
+
 <details>
   
     # For run all pipeline, lunch only this command line : 
