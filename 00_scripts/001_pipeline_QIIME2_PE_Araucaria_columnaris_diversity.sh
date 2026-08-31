@@ -17,9 +17,6 @@
 # AUCUN filtrage de contingence/decontam ni filtrage de prevalence des ASV
 # n'est applique dans ce script.
 #
-# Lancement :
-#   nohup bash 01_pipeline_QIIME2_PE_Araucaria_columnaris_diversity.sh \
-#       > pipeline_Araucaria.log 2>&1 &
 # =============================================================================
 
 set -Eeuo pipefail
