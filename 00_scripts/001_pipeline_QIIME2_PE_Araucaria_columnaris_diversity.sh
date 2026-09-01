@@ -61,9 +61,9 @@ MINLEN=150
 # Active/desactive les grandes etapes.
 # Pour une premiere execution depuis les raw FASTQ, activer les trois premiers
 # controles/traitements selon le besoin.
-RUN_FASTQC_RAW=false
-RUN_TRIMMOMATIC=false
-RUN_FASTQC_CLEAN=false
+RUN_FASTQC_RAW=true
+RUN_TRIMMOMATIC=true
+RUN_FASTQC_CLEAN=true
 RUN_QIIME_IMPORT=true
 RUN_DADA2=true
 RUN_TREE=true
