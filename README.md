@@ -29,6 +29,14 @@ First, open your terminal. Then, run these two command lines :
 
     time nohup bash 001_pipeline_QIIME2_PE_Araucaria_columnaris_diversity.sh  &> 001_pipeline_QIIME2_PE_Araucaria_columnaris_diversity.out
 
+
+
+    # Know the job number:
+    pgrep -afu "$USER" '001_pipeline_QIIME2_PE_Araucaria_columnaris_diversity\.sh'
+
+    # Inspection:
+    ps -p 1483167 -o pid,ppid,stat,etime,%cpu,%mem,cmd
+
 <details>
   
     # For run all pipeline, lunch only this command line : 
