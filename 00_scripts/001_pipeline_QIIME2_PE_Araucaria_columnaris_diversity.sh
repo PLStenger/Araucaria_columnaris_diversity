@@ -39,7 +39,7 @@ LOG_DIR="${RESULTS_DIR}/logs"
 
 THREADS=8
 QIIME_THREADS=8
-TRIMMOMATIC_HEAP="60G"
+TRIMMOMATIC_HEAP="4G"
 
 # Environnements Conda : adapter leurs noms si necessaire.
 FASTQC_ENV="fastqc"
@@ -488,10 +488,18 @@ if [[ "${RUN_TRIMMOMATIC}" == true ]]; then
             out_r2_paired="${CLEAN_DIR}/${sample_id}_R2_paired.fastq.gz"
             out_r2_unpaired="${CLEAN_DIR}/${sample_id}_R2_unpaired.fastq.gz"
 
-            if [[ -s "${out_r1_paired}" && -s "${out_r2_paired}" ]]; then
-                log "${marker}: Trimmomatic deja termine pour ${sample_id}"
-                continue
-            fi
+            if [[ -s "${out_r1_paired}" && -s "${out_r2_paired}" ]] \
+   && gzip -t "${out_r1_paired}" \
+   && gzip -t "${out_r2_paired}"; then
+    log "${marker}: Trimmomatic deja termine et fichiers gzip valides pour ${sample_id}"
+    continue
+fi
+
+rm -f \
+  "${out_r1_paired}" \
+  "${out_r1_unpaired}" \
+  "${out_r2_paired}" \
+  "${out_r2_unpaired}"
 
             log "${marker}: Trimmomatic ${sample_id}"
             trimmomatic PE \
