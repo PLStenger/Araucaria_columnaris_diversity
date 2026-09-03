@@ -225,19 +225,27 @@ normalize_fastq_id() {
 }
 
 observed_read_number() {
-  zcat "$1" | awk 'NR == 1 {
-    split($2, a, ":")
-    print a[1]
-    exit
-  }'
+  gzip -cd -- "$1" | awk '
+    NR == 1 {
+      split($2, a, ":")
+      value = a[1]
+    }
+    END {
+      print value
+    }
+  '
 }
 
 observed_index() {
-  zcat "$1" | awk 'NR == 1 {
-    split($2, a, ":")
-    print a[4]
-    exit
-  }'
+  gzip -cd -- "$1" | awk '
+    NR == 1 {
+      split($2, a, ":")
+      value = a[4]
+    }
+    END {
+      print value
+    }
+  '
 }
 
 validate_paired_fastq() {
@@ -263,20 +271,15 @@ validate_paired_fastq() {
 
   read -r tested bad < <(
     paste \
-      <(zcat "${r1}" | normalize_fastq_id) \
-      <(zcat "${r2}" | normalize_fastq_id) \
+      <(gzip -cd -- "${r1}" | normalize_fastq_id) \
+      <(gzip -cd -- "${r2}" | normalize_fastq_id) \
     | awk -v n="${max_pairs}" '
-        {
-          if ($1 != $2) bad++
+        NR <= n {
           tested++
-          if (tested == n) {
-            print tested, bad + 0
-            printed = 1
-            exit
-          }
+          if ($1 != $2) bad++
         }
         END {
-          if (!printed) print tested + 0, bad + 0
+          print tested + 0, bad + 0
         }
       '
   )
