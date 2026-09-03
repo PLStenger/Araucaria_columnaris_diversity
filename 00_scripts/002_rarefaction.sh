@@ -22,7 +22,7 @@ cd $WORKING_DIRECTORY
 qiime diversity alpha-rarefaction \
 --i-table core/table.qza \
 --i-phylogeny tree/rooted-tree.qza \
-  --p-max-depth 18956 \
+  --p-max-depth 19065 \
   --p-min-depth 1 \
   --m-metadata-file $DATABASE/sample-metadata_16s.tsv \
   --o-visualization visual/alpha-rarefaction_16s.qzv
