@@ -255,8 +255,12 @@ for marker in "${MARKERS[@]}"; do
         log "${marker}: rarefaction desactivee ; reutilisation de ${RAREFIED_TABLE}"
     fi
 
+  if [[ "${RUN_RAREFY}" == true ]]; then
     check_artifact "${RAREFIED_TABLE}"
-    log "${marker}: table rarefiee disponible : ${RAREFIED_TABLE}"
+    log "${marker}: table rarefiee explicite disponible : ${RAREFIED_TABLE}"
+else
+    log "${marker}: pas de table rarefiee explicite ; la rarefaction sera realisee dans core-metrics-phylogenetic."
+fi
 
     # ==================== 3. CORE METRICS ====================
 
@@ -264,13 +268,13 @@ for marker in "${MARKERS[@]}"; do
         rm -rf "${CORE_METRICS_DIR}"
 
         log "${marker}: calcul des core metrics phylogenetiques"
-        qiime_run diversity core-metrics-phylogenetic \
-            --i-phylogeny "${ROOTED_TREE}" \
-            --i-table "${RAREFIED_TABLE}" \
-            --p-sampling-depth "${SAMPLING_DEPTH}" \
-            --m-metadata-file "${METADATA}" \
-            --p-n-jobs-or-threads 1 \
-            --output-dir "${CORE_METRICS_DIR}"
+       qiime_run diversity core-metrics-phylogenetic \
+    --i-phylogeny "${ROOTED_TREE}" \
+    --i-table "${WORKING_TABLE}" \
+    --p-sampling-depth "${SAMPLING_DEPTH}" \
+    --m-metadata-file "${METADATA}" \
+    --p-n-jobs-or-threads 1 \
+    --output-dir "${CORE_METRICS_DIR}"
     else
         log "${marker}: calcul core metrics desactive ; reutilisation de ${CORE_METRICS_DIR}"
     fi
