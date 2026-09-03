@@ -225,11 +225,19 @@ normalize_fastq_id() {
 }
 
 observed_read_number() {
-  zcat "$1" | head -n 1 | awk '{split($2, a, ":"); print a[1]}'
+  zcat "$1" | awk 'NR == 1 {
+    split($2, a, ":")
+    print a[1]
+    exit
+  }'
 }
 
 observed_index() {
-  zcat "$1" | head -n 1 | awk '{split($2, a, ":"); print a[4]}'
+  zcat "$1" | awk 'NR == 1 {
+    split($2, a, ":")
+    print a[4]
+    exit
+  }'
 }
 
 validate_paired_fastq() {
@@ -257,8 +265,20 @@ validate_paired_fastq() {
     paste \
       <(zcat "${r1}" | normalize_fastq_id) \
       <(zcat "${r2}" | normalize_fastq_id) \
-    | head -n "${max_pairs}" \
-    | awk '$1 != $2 {bad++} END {printf "%d %d\n", NR, bad+0}'
+    | awk -v n="${max_pairs}" '
+        {
+          if ($1 != $2) bad++
+          tested++
+          if (tested == n) {
+            print tested, bad + 0
+            printed = 1
+            exit
+          }
+        }
+        END {
+          if (!printed) print tested + 0, bad + 0
+        }
+      '
   )
 
   (( tested > 0 )) || die "${label}: aucune paire lue pendant l'audit"
