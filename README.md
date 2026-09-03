@@ -30,6 +30,7 @@ First, open your terminal. Then, run these two command lines :
     time nohup bash 001_pipeline_QIIME2_PE_Araucaria_columnaris_diversity.sh  &> 001_pipeline_QIIME2_PE_Araucaria_columnaris_diversity.out
     time nohup bash 002_rarefaction.sh  &> 002_rarefaction.out
     time nohup bash 003_qiime2_assign_taxonomy_16S_ITS_2025_7.sh  &> 003_qiime2_assign_taxonomy_16S_ITS_2025_7.out
+    time nohup bash 004_core_biom_Araucaria_columnaris_diversity.sh  &> 004_core_biom_Araucaria_columnaris_diversity.out
 
 
     # Know the job number:
