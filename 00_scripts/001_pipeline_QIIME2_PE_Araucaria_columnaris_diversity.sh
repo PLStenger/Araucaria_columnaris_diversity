@@ -269,20 +269,20 @@ validate_paired_fastq() {
   [[ "${r2_read}" == "2" ]] || die "${label}: le FASTQ R2 ne porte pas le marqueur 2:N (observe : ${r2_read})"
   [[ "${r1_index}" == "${r2_index}" ]] || die "${label}: indexes Illumina differents entre R1 (${r1_index}) et R2 (${r2_index})"
 
-  read -r tested bad < <(
-    paste \
-      <(gzip -cd -- "${r1}" | normalize_fastq_id) \
-      <(gzip -cd -- "${r2}" | normalize_fastq_id) \
-    | awk -v n="${max_pairs}" '
-        NR <= n {
-          tested++
-          if ($1 != $2) bad++
-        }
-        END {
-          print tested + 0, bad + 0
-        }
-      '
-  )
+  IFS=' ' read -r tested bad < <(
+  paste \
+    <(gzip -cd -- "${r1}" | normalize_fastq_id) \
+    <(gzip -cd -- "${r2}" | normalize_fastq_id) \
+  | awk -v n="${max_pairs}" '
+      NR <= n {
+        tested++
+        if ($1 != $2) bad++
+      }
+      END {
+        printf "%d %d\n", tested + 0, bad + 0
+      }
+    '
+)
 
   (( tested > 0 )) || die "${label}: aucune paire lue pendant l'audit"
   (( bad == 0 )) || die "${label}: ${bad}/${tested} IDs de cluster R1/R2 discordants"
